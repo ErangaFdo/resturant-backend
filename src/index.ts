@@ -1,11 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
-
-
-
-
-
+import authRoutes from "./routes/authRoutes";
 dotenv.config();
 const SERVER_PORT = Number(process.env.SERVER_PORT) || 5000
 const MONGO_URI = process.env.MONGO_URI as string
@@ -13,6 +9,9 @@ const MONGO_URI = process.env.MONGO_URI as string
 
 const app = express();
 app.use(express.json());
+
+app.use("/api/v1/auth" , authRoutes)
+
 
 mongoose
   .connect(MONGO_URI)
